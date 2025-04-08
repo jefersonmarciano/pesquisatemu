@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEMU APP - Bonus</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-background pb-16">
+    <header class="p-4 flex justify-between items-center border-b">
+      <div class="temu-logo-container">
+        <h1 class="temu-logo">
+          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+        </h1>
+      </div>
+      <div class="text-right">
+        <div class="balance-text" id="balanceUS">$0.00</div>
+      </div>
+    </header>
+    
+    <main class="p-4">
+      <!-- Daily Progress -->
+      <div class="mb-6">
+        <h2 class="text-xl font-medium text-primary mb-2">Daily Progress</h2>
+        <div class="w-full bg-gray-200 h-2 rounded-full">
+          <div id="progressBar" class="bg-primary h-2 rounded-full" style="width: 0%"></div>
+        </div>
+        <div class="flex justify-between mt-1">
+          <span class="text-primary font-medium" id="progressText">0 of 10 evaluations</span>
+          <span class="text-primary font-medium" id="progressPercentage">0%</span>
+        </div>
+      </div>
+
+      <!-- Product Selection (visible when not evaluating) -->
+      <div id="productSelection" class="space-y-4">
+        <h2 class="text-2xl font-bold text-primary mb-4">Products available for evaluation</h2>
+        <div id="productsList" class="grid grid-cols-1 gap-4">
+          <!-- Products will be inserted here dynamically -->
+          <div class="text-center p-8 text-gray-500">Loading available products...</div>
+        </div>
+      </div>
+
+      <!-- Product Evaluation (initially hidden) -->
+      <div id="productEvaluation" class="hidden">
+        <div class="bg-amber-50 rounded-lg p-4 mb-6 relative">
+          <div id="productBonus" class="absolute top-2 right-2 bg-amber-100 text-amber-800 px-2 py-1 rounded-md text-sm font-medium">
+            +$0.00
+          </div>
+          <img 
+            id="productImage"
+            src="https://placehold.co/300x150"
+            alt="Product" 
+            class="w-full h-32 object-cover mb-4"
+          />
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 id="productName" class="font-bold text-primary">Product Name</h3>
+              <p id="productCategory" class="text-sm text-gray-600">Category</p>
+            </div>
+            <button class="flex items-center text-primary font-medium">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Product link
+            </button>
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <h3 class="text-primary font-medium mb-2" id="questionText"></h3>
+          <textarea
+            id="answerInput"
+            placeholder="Type your answer..."
+            class="textarea border-b border-gray-300 rounded-none px-0 w-full"
+            rows="3"
+          ></textarea>
+        </div>
+        
+        <div class="flex space-x-4">
+          <button 
+            id="backButton"
+            class="blue-button w-1/2 flex items-center justify-center"
+          >
+            <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+          </button>
+          
+          <button 
+            id="nextButton"
+            class="blue-button w-1/2 flex items-center justify-center"
+          >
+            Next
+            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Daily limit reached message (initially hidden) -->
+      <div id="limitReached" class="hidden text-center p-8">
+        <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-24 w-24 text-secondary mx-auto mb-4"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-.86-.34-1.72-.34-.86 0-1.72.34-1.72.34L14 16.19"/></svg>
+        
+        <h1 class="text-4xl font-bold text-primary mb-4">
+          Daily limit reached!
+        </h1>
+        
+        <p class="text-2xl font-bold text-primary mb-6">
+          You've already evaluated 10 products today.
+        </p>
+        
+        <p class="text-gray-500 mb-12">
+          Come back tomorrow to evaluate more products and increase your balance.
+        </p>
+      </div>
+    </main>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
+        <span>Lessons</span>
+      </a>
+      <a href="bonus.html" class="bottom-nav-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        <span>Bonus</span>
+      </a>
+      <a href="wallet.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+      <a href="extras.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
+        <span>Extras</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Interface elements
+      const balanceUSElement = document.getElementById('balanceUS');
+      const progressBarElement = document.getElementById('progressBar');
+      const progressTextElement = document.getElementById('progressText');
+      const progressPercentageElement = document.getElementById('progressPercentage');
+      const productSelectionElement = document.getElementById('productSelection');
+      const productsListElement = document.getElementById('productsList');
+      const productEvaluationElement = document.getElementById('productEvaluation');
+      const limitReachedElement = document.getElementById('limitReached');
+      
+      // Product evaluation elements
+      const productImageElement = document.getElementById('productImage');
+      const productNameElement = document.getElementById('productName');
+      const productCategoryElement = document.getElementById('productCategory');
+      const productBonusElement = document.getElementById('productBonus');
+      const questionTextElement = document.getElementById('questionText');
+      const answerInputElement = document.getElementById('answerInput');
+      const nextButton = document.getElementById('nextButton');
+      const backButton = document.getElementById('backButton');
+      
+      // State variables
+      let currentUserEmail = null;
+      let currentQuestion = 0;
+      let answers = {};
+      let selectedProduct = null;
+      let submitting = false;
+      
+      // Evaluation questions
+      const questions = [
+        "What was your experience on the product's sales page?",
+        "Would you buy this product?",
+        "What did you think of the product's sales video?",
+        "Does this product seem to deliver what is promised on the sales page?",
+        "What features or aspects of the product did you like the most?",
+        "What improvements would you suggest to make the product even better?",
+        "Would you recommend this product to others?",
+        "What overall rating would you give this product?"
+      ];
+      
+      try {
+        // Check authentication
+        const userEmail = await checkAuth();
+        if (!userEmail) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        currentUserEmail = userEmail;
+        
+        // Load user balance
+        const balance = await getUserBalance(userEmail);
+        balanceUSElement.textContent = `$${balance.balanceUSD}`;
+        
+        // Set the MAX_DAILY_EVALUATIONS constant to 10
+        const MAX_DAILY_EVALUATIONS = 10;
+        
+        // Check daily limit
+        const dailyLimit = await checkDailyLimit(userEmail);
+        if (dailyLimit.reachedLimit) {
+          showLimitReached();
+        } else {
+          // Update progress bar
+          updateProgressBar();
+          
+          // Load available products
+          await loadAvailableProducts();
+        }
+        
+        // Set up buttons
+        backButton.addEventListener('click', handleBack);
+        nextButton.addEventListener('click', handleNext);
+        
+      } catch (err) {
+        console.error('Error loading data:', err);
+      }
+      
+      // Function to update progress bar
+      async function updateProgressBar() {
+        const stats = await getEvaluationStats(currentUserEmail);
+        progressBarElement.style.width = `${stats.completionPercentage}%`;
+        progressTextElement.textContent = `${stats.evaluatedToday} of ${stats.maxDaily} evaluations`;
+        progressPercentageElement.textContent = `${stats.completionPercentage}%`;
+      }
+      
+      // Function to load available products
+      async function loadAvailableProducts() {
+        const products = await getAvailableProducts(currentUserEmail);
+        
+        if (products.length === 0) {
+          showLimitReached();
+          return;
+        }
+        
+        // Clear product list
+        productsListElement.innerHTML = '';
+        
+        // Add products to the list
+        products.forEach(product => {
+          const productCard = document.createElement('div');
+          productCard.className = 'bg-white rounded-lg shadow p-4';
+          productCard.innerHTML = `
+            <div class="relative">
+              <img src="${product.image}" alt="${product.name}" class="w-full h-32 object-cover rounded-md mb-3">
+              <div class="absolute top-2 right-2 bg-amber-100 text-amber-800 px-2 py-1 rounded-md text-sm font-medium">
+                +$${product.bonus.toFixed(2)}
+              </div>
+            </div>
+            <h3 class="font-bold text-primary">${product.name}</h3>
+            <p class="text-sm text-gray-600 mb-3">${product.category}</p>
+            <button class="blue-button w-full text-sm evaluate-product" data-product-id="${product.id}">
+              Evaluate product
+            </button>
+          `;
+          
+          productsListElement.appendChild(productCard);
+          
+          // Add event to button
+          const evaluateButton = productCard.querySelector('.evaluate-product');
+          evaluateButton.addEventListener('click', () => startProductEvaluation(product));
+        });
+      }
+      
+      // Function to start product evaluation
+      function startProductEvaluation(product) {
+        selectedProduct = product;
+        currentQuestion = 0;
+        answers = {};
+        
+        // Update product information
+        productImageElement.src = product.image;
+        productImageElement.alt = product.name;
+        productNameElement.textContent = product.name;
+        productCategoryElement.textContent = product.category;
+        productBonusElement.textContent = `+$${product.bonus.toFixed(2)}`;
+        
+        // Show first question
+        questionTextElement.textContent = questions[currentQuestion];
+        answerInputElement.value = '';
+        
+        // Show evaluation section and hide product selection
+        productSelectionElement.classList.add('hidden');
+        productEvaluationElement.classList.remove('hidden');
+      }
+      
+      // Function to go back to product selection
+      function handleBack() {
+        if (currentQuestion > 0) {
+          // Go back to previous question
+          currentQuestion--;
+          questionTextElement.textContent = questions[currentQuestion];
+          answerInputElement.value = answers[currentQuestion] || '';
+        } else {
+          // Go back to product selection
+          productEvaluationElement.classList.add('hidden');
+          productSelectionElement.classList.remove('hidden');
+          selectedProduct = null;
+        }
+      }
+      
+      // Function to advance to next question or finish
+      async function handleNext() {
+        if (submitting) return;
+        
+        // Save current answer
+        answers[currentQuestion] = answerInputElement.value;
+        
+        if (currentQuestion < questions.length - 1) {
+          // Advance to next question
+          currentQuestion++;
+          questionTextElement.textContent = questions[currentQuestion];
+          answerInputElement.value = answers[currentQuestion] || '';
+        } else {
+          // Last question, submit answers
+          submitting = true;
+          nextButton.innerHTML = 'Submitting...';
+          nextButton.disabled = true;
+          backButton.disabled = true;
+          
+          try {
+            // Register product evaluation
+            const result = await registerProductEvaluation(currentUserEmail, selectedProduct.id, answers);
+            
+            if (result) {
+              // Update displayed balance
+              balanceUSElement.textContent = `$${result.balanceUSD}`;
+              
+              // Save bonus value to display in notification
+              localStorage.setItem("lastBonusUSD", selectedProduct.bonus.toFixed(2));
+              
+              // Update progress bar
+              await updateProgressBar();
+              
+              // Check if daily limit reached
+              const dailyLimit = await checkDailyLimit(currentUserEmail);
+              if (dailyLimit.reachedLimit) {
+                // Redirect to notification page
+                window.location.href = 'bonus-notification.html';
+              } else {
+                // Go back to product selection
+                productEvaluationElement.classList.add('hidden');
+                
+                // Reload available products
+                await loadAvailableProducts();
+                
+                productSelectionElement.classList.remove('hidden');
+              }
+            } else {
+              alert('Error registering evaluation. Please try again.');
+            }
+          } catch (err) {
+            console.error('Error processing response:', err);
+            alert('Error processing response. Please try again.');
+          } finally {
+            submitting = false;
+            nextButton.innerHTML = 'Next <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>';
+            nextButton.disabled = false;
+            backButton.disabled = false;
+          }
+        }
+      }
+      
+      // Function to show limit reached message
+      function showLimitReached() {
+        productSelectionElement.classList.add('hidden');
+        productEvaluationElement.classList.add('hidden');
+        limitReachedElement.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

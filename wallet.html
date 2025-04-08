@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEMU APP - Wallet</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-background pb-16">
+    <header class="p-4 flex justify-between items-center border-b">
+      <div class="temu-logo-container">
+        <h1 class="temu-logo">
+          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+        </h1>
+      </div>
+      <div class="text-right">
+        <div class="balance-text" id="balanceUS">$0.00</div>
+      </div>
+    </header>
+    
+    <main class="p-4">
+      <div class="mb-6">
+        <h2 class="text-xl font-medium text-primary mb-2">Daily Progress</h2>
+        <div class="w-full bg-gray-200 h-2 rounded-full">
+          <div id="progressBar" class="bg-primary h-2 rounded-full" style="width: 0%"></div>
+        </div>
+        <div class="flex justify-between mt-1">
+          <span class="text-primary font-medium" id="progressText">0 of 10 evaluations</span>
+          <span class="text-primary font-medium" id="progressPercentage">0%</span>
+        </div>
+      </div>
+      
+      <div class="text-center my-8">
+        <h2 class="text-2xl font-medium text-primary mb-2">Your Balance</h2>
+        <div class="balance-text text-5xl" id="balanceUSLarge">$0.00</div>
+      </div>
+      
+      <div class="bg-secondary text-white p-4 rounded-md mb-8">
+        <p class="text-center">Your balance limit: $1,000.00</p>
+      </div>
+      
+      <div class="mb-6">
+        <h3 class="text-xl font-medium text-primary mb-4">Select your payment method</h3>
+        
+        <div class="grid grid-cols-3 gap-4">
+          <button 
+            class="pix-button active"
+            id="paypalButton"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mb-2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            <span>PayPal</span>
+          </button>
+          
+          <button 
+            class="pix-button"
+            id="bankButton"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mb-2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Bank</span>
+          </button>
+          
+          <button 
+            class="pix-button"
+            id="cryptoButton"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mb-2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Crypto</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="mb-8">
+        <label class="text-xl font-medium text-primary mb-2 block">
+          Enter your payment details...
+        </label>
+        <input
+          id="paymentDetailsInput"
+          class="input border-b-2 border-primary rounded-none px-0 text-lg w-full"
+        />
+      </div>
+      
+      <button id="withdrawButton" class="red-button w-full text-xl">
+        Withdraw Funds
+      </button>
+    </main>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
+        <span>Lessons</span>
+      </a>
+      <a href="bonus.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        <span>Bonus</span>
+      </a>
+      <a href="wallet.html" class="bottom-nav-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+      <a href="extras.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
+        <span>Extras</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      const balanceUSElement = document.getElementById('balanceUS');
+      const balanceUSLargeElement = document.getElementById('balanceUSLarge');
+      const progressBarElement = document.getElementById('progressBar');
+      const progressTextElement = document.getElementById('progressText');
+      const progressPercentageElement = document.getElementById('progressPercentage');
+      const paypalButton = document.getElementById('paypalButton');
+      const bankButton = document.getElementById('bankButton');
+      const cryptoButton = document.getElementById('cryptoButton');
+      const paymentDetailsInput = document.getElementById('paymentDetailsInput');
+      const withdrawButton = document.getElementById('withdrawButton');
+      
+      let selectedPaymentType = 'paypal';
+      
+      try {
+        // Check authentication
+        const userEmail = await checkAuth();
+        if (!userEmail) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        // Load user balance
+        const balance = await getUserBalance(userEmail);
+        balanceUSElement.textContent = `$${balance.balanceUSD}`;
+        balanceUSLargeElement.textContent = `$${balance.balanceUSD}`;
+        
+        // Update progress bar
+        const stats = await getEvaluationStats(userEmail);
+        progressBarElement.style.width = `${stats.completionPercentage}%`;
+        progressTextElement.textContent = `${stats.evaluatedToday} of ${stats.maxDaily} evaluations`;
+        progressPercentageElement.textContent = `${stats.completionPercentage}%`;
+        
+        // Set up payment type buttons
+        paypalButton.addEventListener('click', function() {
+          setPaymentType('paypal');
+        });
+        
+        bankButton.addEventListener('click', function() {
+          setPaymentType('bank');
+        });
+        
+        cryptoButton.addEventListener('click', function() {
+          setPaymentType('crypto');
+        });
+        
+        // Set up withdraw button
+        withdrawButton.addEventListener('click', function() {
+          alert('Withdrawal feature in development!');
+        });
+        
+        function setPaymentType(type) {
+          selectedPaymentType = type;
+          
+          // Remove active class from all buttons
+          paypalButton.classList.remove('active');
+          bankButton.classList.remove('active');
+          cryptoButton.classList.remove('active');
+          
+          // Add active class to selected button
+          if (type === 'paypal') {
+            paypalButton.classList.add('active');
+          } else if (type === 'bank') {
+            bankButton.classList.add('active');
+          } else if (type === 'crypto') {
+            cryptoButton.classList.add('active');
+          }
+          
+          // Clear input field
+          paymentDetailsInput.value = '';
+          
+          // Adjust placeholder based on type
+          if (type === 'paypal') {
+            paymentDetailsInput.placeholder = 'Enter your PayPal email...';
+          } else if (type === 'bank') {
+            paymentDetailsInput.placeholder = 'Enter your bank details...';
+          } else if (type === 'crypto') {
+            paymentDetailsInput.placeholder = 'Enter your wallet address...';
+          }
+        }
+      } catch (err) {
+        console.error('Error loading data:', err);
+      }
+    });
+  </script>
+</body>
+</html>

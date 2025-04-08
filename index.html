@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEMU APP - Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-background flex flex-col">
+    <header class="bg-primary p-4 flex justify-center">
+      <div class="temu-logo-container">
+        <h1 class="temu-logo">
+          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+        </h1>
+      </div>
+    </header>
+    
+    <main class="flex-1 p-6 flex flex-col max-w-md mx-auto w-full">
+      <div class="mt-12 mb-8">
+        <h1 class="text-3xl font-bold text-primary mb-2">
+          To continue, access your account:
+        </h1>
+      </div>
+      
+      <form id="loginForm" class="space-y-8">
+        <div class="space-y-2">
+          <label for="email" class="text-xl font-medium text-primary">
+            Enter your email
+          </label>
+          <input
+            id="email"
+            type="email"
+            class="input border-b-2 border-primary rounded-none px-0 text-lg w-full"
+            required
+          />
+          <p id="errorMessage" class="text-red-500 text-sm hidden"></p>
+        </div>
+        
+        <div class="text-center">
+          <a href="#" class="text-primary underline">
+            Terms of use
+          </a>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="red-button w-full text-xl"
+          id="loginButton"
+        >
+          Access app
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is already authenticated
+      checkAuth().then(userEmail => {
+        if (userEmail) {
+          window.location.href = 'home.html';
+        }
+      });
+
+      // Set up login form
+      const loginForm = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const errorMessage = document.getElementById('errorMessage');
+      const loginButton = document.getElementById('loginButton');
+
+      loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        if (!email) {
+          showError('Please enter a valid email');
+          return;
+        }
+        
+        loginButton.textContent = 'Processing...';
+        loginButton.disabled = true;
+        errorMessage.classList.add('hidden');
+        
+        try {
+          const result = await upsertUser(email);
+          
+          if (result) {
+            // Save token and email in localStorage
+            localStorage.setItem('authToken', result.token);
+            localStorage.setItem('userEmail', email);
+            
+            window.location.href = 'home.html';
+          } else {
+            showError('Error logging in. Please try again.');
+          }
+        } catch (err) {
+          console.error('Login error:', err);
+          showError('Error logging in. Please try again.');
+        } finally {
+          loginButton.textContent = 'Access app';
+          loginButton.disabled = false;
+        }
+      });
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

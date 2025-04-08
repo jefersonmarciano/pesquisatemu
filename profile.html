@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEMU APP - Profile</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-background pb-16">
+    <header class="p-4 flex justify-between items-center border-b">
+      <div class="temu-logo-container">
+        <h1 class="temu-logo">
+          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+        </h1>
+      </div>
+      <div class="text-right">
+        <div class="balance-text" id="balanceUS">$0.00</div>
+      </div>
+    </header>
+    
+    <main class="p-4 flex flex-col items-center">
+      <div class="my-12 flex flex-col items-center">
+        <div class="bg-accent rounded-full p-8 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-primary"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        
+        
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEMU APP - Profile</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-background pb-16">
+    <header class="p-4 flex justify-between items-center border-b">
+      <div class="temu-logo-container">
+        <h1 class="temu-logo">
+          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+        </h1>
+      </div>
+      <div class="text-right">
+        <div class="balance-text" id="balanceUS">$0.00</div>
+      </div>
+    </header>
+    
+    <main class="p-4 flex flex-col items-center">
+      <div class="my-12 flex flex-col items-center">
+        <div class="bg-accent rounded-full p-8 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-primary"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-primary mb-2" id="userEmail">user@example.com</h2>
+        <p class="text-gray-500">Member since <span id="memberSince">January 2023</span></p>
+      </div>
+      
+      <div class="w-full space-y-6">
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h3 class="text-xl font-medium text-primary mb-4">Account Information</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="text-sm text-gray-500">Email</label>
+              <p class="text-primary" id="profileEmail">user@example.com</p>
+            </div>
+            
+            <div>
+              <label class="text-sm text-gray-500">Total Evaluations</label>
+              <p class="text-primary" id="totalEvaluations">0</p>
+            </div>
+            
+            <div>
+              <label class="text-sm text-gray-500">Total Earned</label>
+              <p class="text-primary" id="totalEarned">$0.00</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow">
+          <h3 class="text-xl font-medium text-primary mb-4">Settings</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-primary">Notifications</span>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-primary">Dark Mode</span>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <button id="logoutButton" class="red-button w-full">
+          Log Out
+        </button>
+      </div>
+    </main>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
+        <span>Lessons</span>
+      </a>
+      <a href="bonus.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        <span>Bonus</span>
+      </a>
+      <a href="wallet.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="bottom-nav-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+      <a href="extras.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
+        <span>Extras</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      const balanceUSElement = document.getElementById('balanceUS');
+      const userEmailElement = document.getElementById('userEmail');
+      const profileEmailElement = document.getElementById('profileEmail');
+      const memberSinceElement = document.getElementById('memberSince');
+      const totalEvaluationsElement = document.getElementById('totalEvaluations');
+      const totalEarnedElement = document.getElementById('totalEarned');
+      const logoutButton = document.getElementById('logoutButton');
+      
+      try {
+        // Check authentication
+        const userEmail = await checkAuth();
+        if (!userEmail) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        // Display user email
+        userEmailElement.textContent = userEmail;
+        profileEmailElement.textContent = userEmail;
+        
+        // Load user balance
+        const balance = await getUserBalance(userEmail);
+        balanceUSElement.textContent = `$${balance.balanceUSD}`;
+        
+        // Get user data from Supabase
+        const { data: userData, error } = await supabase
+          .from('users')
+          .select('created_at, completed_surveys, balance_usd')
+          .eq('email', userEmail)
+          .single();
+        
+        if (userData) {
+          // Format date
+          const createdAt = new Date(userData.created_at);
+          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+          memberSinceElement.textContent = createdAt.toLocaleDateString('en-US', options);
+          
+          // Display total evaluations
+          totalEvaluationsElement.textContent = userData.completed_surveys || '0';
+          
+          // Display total earned
+          totalEarnedElement.textContent = `$${userData.balance_usd.toFixed(2)}`;
+        }
+        
+        // Set up logout button
+        logoutButton.addEventListener('click', function() {
+          logout();
+          window.location.href = 'index.html';
+        });
+      } catch (err) {
+        console.error('Error loading data:', err);
+      }
+    });
+  </script>
+</body>
+</html>
