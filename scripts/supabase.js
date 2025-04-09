@@ -291,7 +291,7 @@ const availableProducts = [
     id: 11,
     name: "Luxury Watch",
     category: "Accessories",
-    image: "./assets/luxury watch.png",
+    image: "./assets/Luxury Watch.png",
     bonus: 1.67
   },
   {
@@ -305,21 +305,21 @@ const availableProducts = [
     id: 13,
     name: "Bestseller Book",
     category: "Books",
-    image: "./assets/bestseller book.png",
+    image: "./assets/book.png",
     bonus: 1.67
   },
   {
     id: 14,
     name: "Console Game",
     category: "Entertainment",
-    image: "./assets/console game.png",
+    image: "./assets/Console Game.png",
     bonus: 1.67
   },
   {
     id: 15,
     name: "Professional Makeup Kit",
     category: "Beauty",
-    image: "./assets/professional makeup kit.png",
+    image: "./assets/Professional Makeup Kit.png",
     bonus: 1.67
   }
 ];
