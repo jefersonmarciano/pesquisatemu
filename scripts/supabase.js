@@ -221,105 +221,105 @@ const availableProducts = [
     id: 1,
     name: "Premium Smartphone",
     category: "Electronics",
-    image: "https://placehold.co/300x150?text=Smartphone",
+    image: "./assets/Smartphone.webp",
     bonus: 1.67
   },
   {
     id: 2,
     name: "Ultralight Laptop",
     category: "Electronics",
-    image: "https://placehold.co/300x150?text=Laptop",
+    image: "./assets/laptop.webp",
     bonus: 1.67
   },
   {
     id: 3,
     name: "Bluetooth Headphones",
     category: "Accessories",
-    image: "https://placehold.co/300x150?text=Headphones",
+    image: "./assets/headphones.jpg",
     bonus: 1.67
   },
   {
     id: 4,
     name: "Fitness Smartwatch",
     category: "Wearables",
-    image: "https://placehold.co/300x150?text=Smartwatch",
+    image: "./assets/smarthwatch.webp",
     bonus: 1.67
   },
   {
     id: 5,
     name: "Professional Digital Camera",
     category: "Photography",
-    image: "https://placehold.co/300x150?text=Camera",
+    image: "./assets/camera professiocional.jpg",
     bonus: 1.67
   },
   {
     id: 6,
     name: "Sports Shoes",
     category: "Fashion",
-    image: "https://placehold.co/300x150?text=Shoes",
+    image: "./assets/shoes.webp",
     bonus: 1.67
   },
   {
     id: 7,
     name: "Multifunctional Blender",
     category: "Home Appliances",
-    image: "https://placehold.co/300x150?text=Blender",
+    image: "./assets/blender.jpg",
     bonus: 1.67
   },
   {
     id: 8,
     name: "Waterproof Backpack",
     category: "Accessories",
-    image: "https://placehold.co/300x150?text=Backpack",
+    image: "./assets/backpack.webp",
     bonus: 1.67
   },
   {
     id: 9,
     name: "Ergonomic Gaming Chair",
     category: "Furniture",
-    image: "https://placehold.co/300x150?text=Chair",
+    image: "./assets/Ergonomic Gaming Chair.png",
     bonus: 1.67
   },
   {
     id: 10,
     name: "Imported Perfume",
     category: "Beauty",
-    image: "https://placehold.co/300x150?text=Perfume",
+    image: "./assets/Imported Perfume.webp",
     bonus: 1.67
   },
   {
     id: 11,
     name: "Luxury Watch",
     category: "Accessories",
-    image: "https://placehold.co/300x150?text=Watch",
+    image: "./assets/luxury watch.webp",
     bonus: 1.67
   },
   {
     id: 12,
     name: "Multifunctional Electric Cooker",
     category: "Home Appliances",
-    image: "https://placehold.co/300x150?text=Cooker",
+    image: "./assets/Multifunctional Electric Cooker.jpeg",
     bonus: 1.67
   },
   {
     id: 13,
     name: "Bestseller Book",
     category: "Books",
-    image: "https://placehold.co/300x150?text=Book",
+    image: "./assets/bestseller book.webp",
     bonus: 1.67
   },
   {
     id: 14,
     name: "Console Game",
     category: "Entertainment",
-    image: "https://placehold.co/300x150?text=Game",
+    image: "./assets/console game.jpg",
     bonus: 1.67
   },
   {
     id: 15,
     name: "Professional Makeup Kit",
     category: "Beauty",
-    image: "https://placehold.co/300x150?text=Makeup",
+    image: "./assets/professional makeup kit.jpg",
     bonus: 1.67
   }
 ];
