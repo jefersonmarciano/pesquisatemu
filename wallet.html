@@ -1,224 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TM APP - Wallet</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMU APP - Wallet</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div class="min-h-screen bg-cream">
-    <header class="p-4 flex justify-between items-center bg-cream border-b border-gray-300">
-      <div class="temu-logo-container">
-        <h1 class="temu-logo">
-          <span class="text-primary">TM</span> <span class="text-primary">APP</span>
-        </h1>
-      </div>
-      <div class="text-right">
-        <div class="text-primary text-xl font-bold" id="balanceUS">$0.00</div>
-      </div>
-    </header>
-    
-    <main class="p-4">
-      <div class="mb-6">
-        <div class="flex justify-between items-center mb-2">
-          <h2 class="text-xl font-medium text-navy">Daily Progress</h2>
-          <span class="text-navy font-medium" id="progressPercentage">0.00%</span>
-        </div>
-        <div class="w-full bg-cream border border-gray-300 h-4 rounded-full">
-          <div id="progressBar" class="bg-primary h-4 rounded-full" style="width: 0%"></div>
-        </div>
-      </div>
-      
-      <div class="text-center my-8">
-        <h2 class="text-2xl font-medium text-navy mb-2">Your Balance</h2>
-        <div class="text-primary text-6xl font-bold" id="balanceUSLarge">$0.00</div>
-        <div class="text-navy text-3xl" id="balanceBRL">R$ 0.00</div>
-      </div>
-      
-      <div class="bg-primary text-white p-4 text-center mb-8">
-        <p>Your balance limit: $1,000.00</p>
-      </div>
-      
-      <div id="withdrawalOptions" class="mb-8">
-        <h3 class="text-2xl font-medium text-navy mb-4 text-center">Select your payment method</h3>
-        
-        <div class="grid grid-cols-3 gap-2 mb-6">
-          <div class="bg-navy text-white p-4 rounded-md text-center active-payment-option">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span>CPF</span>
-          </div>
-          
-          <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span class="text-gray-500">Phone</span>
-          </div>
-          
-          <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <span class="text-gray-500">Email</span>
-          </div>
-        </div>
-        
-        <div class="mb-6">
-          <label class="text-navy mb-2 block">Enter your payment information</label>
-          <input
-            type="text"
-            class="input border-b-2 border-navy rounded-none px-0 text-lg w-full"
-            placeholder="Enter your CPF number..."
-          />
-        </div>
-        
-        <button id="withdrawButton" class="withdrawal-button w-full text-xl">
-          Withdraw Funds
-        </button>
-      </div>
-    </main>
-    
-    <nav class="bottom-nav">
-      <a href="home.html" class="bottom-nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
-        <span>Lessons</span>
-      </a>
-      <a href="bonus.html" class="bottom-nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-        <span>Bonus</span>
-      </a>
-      <a href="wallet.html" class="bottom-nav-item active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-        <span>Wallet</span>
-      </a>
-      <a href="profile.html" class="bottom-nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span>Profile</span>
-      </a>
-      <a href="extras.html" class="bottom-nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
-        <span>Extras</span>
-      </a>
-    </nav>
-  </div>
-
-  <!-- Insufficient Balance Alert (initially hidden) -->
-  <div id="insufficientBalanceAlert" class="modal hidden">
-    <div class="modal-content">
-      <div class="text-center p-6">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-yellow-500 mx-auto mb-4"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        
-        <h2 class="text-2xl font-bold text-navy mb-2">Insufficient Balance</h2>
-        <p class="text-gray-600 mb-6">You need at least $1,000.00 to withdraw funds. Continue completing evaluations to earn more.</p>
-        
-        <div class="bg-gray-100 p-4 rounded-md mb-6">
-          <div class="flex justify-between mb-2">
-            <span class="text-gray-500">Your Balance:</span>
-            <span class="font-bold text-navy" id="alertCurrentBalance">$0.00</span>
-          </div>
-          <div class="flex justify-between mb-2">
-            <span class="text-gray-500">Required:</span>
-            <span class="font-bold text-navy">$1,000.00</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">Still Needed:</span>
-            <span class="font-bold text-red-500" id="alertAmountNeeded">$1,000.00</span>
-          </div>
-        </div>
-        
-        <a href="bonus.html" id="closeInsufficientAlert" class="blue-button w-full">Go to Bonus</a>
-      </div>
+<div class="min-h-screen bg-cream">
+  <header class="p-4 flex justify-between items-center bg-cream border-b border-gray-300">
+    <div class="temu-logo-container">
+      <h1 class="temu-logo">
+        <span class="text-primary">TEMU</span> <span class="text-primary">APP</span>
+      </h1>
     </div>
-  </div>
+    <div class="text-right">
+      <div class="text-primary text-xl font-bold" id="balanceUS">$0.00</div>
+    </div>
+  </header>
   
-  <!-- Contact Email Alert (initially hidden) -->
-  <div id="contactEmailAlert" class="modal hidden">
-    <div class="modal-content">
-      <div class="text-center p-6">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-green-500 mx-auto mb-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        
-        <h2 class="text-2xl font-bold text-navy mb-2">Withdrawal Available</h2>
-        <p class="text-gray-600 mb-6">You have reached the minimum withdrawal amount. Please contact us at <strong>support@temuapp.com</strong> to process your withdrawal.</p>
-        
-        <div class="bg-gray-100 p-4 rounded-md mb-6">
-          <div class="flex justify-between mb-2">
-            <span class="text-gray-500">Your Balance:</span>
-            <span class="font-bold text-navy" id="alertEligibleBalance">$0.00</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">Minimum Required:</span>
-            <span class="font-bold text-navy">$1,000.00</span>
-          </div>
-        </div>
-        
-        <a href="bonus.html" id="closeContactAlert" class="blue-button w-full">Go to Bonus</a>
+  <main class="p-4">
+    <div class="mb-6">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-xl font-medium text-navy">Daily Progress</h2>
+        <span class="text-navy font-medium" id="progressPercentage">0.00%</span>
+      </div>
+      <div class="w-full bg-cream border border-gray-300 h-4 rounded-full">
+        <div id="progressBar" class="bg-primary h-4 rounded-full" style="width: 0%"></div>
       </div>
     </div>
-  </div>
+    
+    <div class="text-center my-8">
+      <h2 class="text-2xl font-medium text-navy mb-2">Your Balance</h2>
+      <div class="text-primary text-6xl font-bold" id="balanceUSLarge">$0.00</div>
+      <div class="text-navy text-3xl" id="balanceBRL">R$ 0.00</div>
+    </div>
+    
+    <div class="bg-primary text-white p-4 text-center mb-8">
+      <p>Your balance limit: $1,000.00</p>
+    </div>
+    
+    <div id="withdrawalOptions" class="mb-8">
+      <h3 class="text-2xl font-medium text-navy mb-4 text-center">Select your payment method</h3>
+      
+      <div class="grid grid-cols-3 gap-2 mb-6">
+        <div class="bg-navy text-white p-4 rounded-md text-center active-payment-option">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>CPF</span>
+        </div>
+        
+        <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="text-gray-500">Phone</span>
+        </div>
+        
+        <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="text-gray-500">Email</span>
+        </div>
+      </div>
+      
+      <div class="mb-6">
+        <label class="text-navy mb-2 block">Enter your payment information</label>
+        <input
+          type="text"
+          class="input border-b-2 border-navy rounded-none px-0 text-lg w-full"
+          placeholder="Enter your CPF number..."
+        />
+      </div>
+      
+      <button id="withdrawButton" class="withdrawal-button w-full text-xl">
+        Withdraw Funds
+      </button>
+    </div>
+  </main>
+  
+  <nav class="bottom-nav">
+    <a href="home.html" class="bottom-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
+      <span>Lessons</span>
+    </a>
+    <a href="bonus.html" class="bottom-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+      <span>Bonus</span>
+    </a>
+    <a href="wallet.html" class="bottom-nav-item active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+      <span>Wallet</span>
+    </a>
+    <a href="profile.html" class="bottom-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </a>
+    <a href="extras.html" class="bottom-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
+      <span>Extras</span>
+    </a>
+  </nav>
+</div>
 
-  <script src="scripts/supabase.js"></script>
-  <script src="scripts/auth.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', async function() {
-      const balanceUSElement = document.getElementById('balanceUS');
-      const balanceUSLargeElement = document.getElementById('balanceUSLarge');
-      const balanceBRLElement = document.getElementById('balanceBRL');
-      const progressBarElement = document.getElementById('progressBar');
-      const progressPercentageElement = document.getElementById('progressPercentage');
-      const withdrawButton = document.getElementById('withdrawButton');
+<!-- Contact Email Alert (initially hidden) -->
+<div id="contactEmailAlert" class="modal hidden" style="display: none !important;">
+  <div class="modal-content">
+    <div class="text-center p-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-green-500 mx-auto mb-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       
-      // Alert elements
-      const insufficientBalanceAlert = document.getElementById('insufficientBalanceAlert');
-      const contactEmailAlert = document.getElementById('contactEmailAlert');
-      const alertCurrentBalance = document.getElementById('alertCurrentBalance');
-      const alertAmountNeeded = document.getElementById('alertAmountNeeded');
-      const alertEligibleBalance = document.getElementById('alertEligibleBalance');
+      <h2 class="text-2xl font-bold text-navy mb-2">Withdrawal Available</h2>
+      <p class="text-gray-600 mb-6">You have reached the minimum withdrawal amount. Please contact us at <strong>support@temuapp.com</strong> to process your withdrawal.</p>
       
-      const MINIMUM_WITHDRAWAL = 1000;
-      const CONVERSION_RATE = 5.0; // BRL to USD
+      <div class="bg-gray-100 p-4 rounded-md mb-6">
+        <div class="flex justify-between mb-2">
+          <span class="text-gray-500">Your Balance:</span>
+          <span class="font-bold text-navy" id="alertEligibleBalance">$0.00</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-500">Minimum Required:</span>
+          <span class="font-bold text-navy">$1,000.00</span>
+        </div>
+      </div>
       
-      try {
-        // Check authentication
-        const userEmail = await checkAuth();
-        if (!userEmail) {
-          window.location.href = 'index.html';
-          return;
-        }
-        
-        // Load user balance
-        const balance = await getUserBalance(userEmail);
-        const currentBalanceUSD = parseFloat(balance.balanceUSD);
-        const currentBalanceBRL = currentBalanceUSD * CONVERSION_RATE;
-        
-        balanceUSElement.textContent = `$${balance.balanceUSD}`;
-        balanceUSLargeElement.textContent = `$${balance.balanceUSD}`;
-        balanceBRLElement.textContent = `R$ ${currentBalanceBRL.toFixed(2)}`;
-        
-        // Update progress bar
-        const stats = await getEvaluationStats(userEmail);
-        progressBarElement.style.width = `${stats.completionPercentage}%`;
-        progressPercentageElement.textContent = `${stats.completionPercentage}%`;
-        
-        // Set up withdraw button
-        withdrawButton.addEventListener('click', function() {
-          handleWithdrawal(currentBalanceUSD);
-        });
-        
-        function handleWithdrawal(currentBalance) {
-          if (currentBalance >= MINIMUM_WITHDRAWAL) {
-            // User has enough balance, show contact email alert
-            alertEligibleBalance.textContent = `$${currentBalance.toFixed(2)}`;
-            contactEmailAlert.classList.remove('hidden');
-          } else {
-            // User doesn't have enough balance
-            const amountNeeded = (MINIMUM_WITHDRAWAL - currentBalance).toFixed(2);
-            alertCurrentBalance.textContent = `$${currentBalance.toFixed(2)}`;
-            alertAmountNeeded.textContent = `$${amountNeeded}`;
-            insufficientBalanceAlert.classList.remove('hidden');
-          }
-        }
-      } catch (err) {
-        console.error('Error loading data:', err);
+      <a href="bonus.html" id="closeContactAlert" class="blue-button w-full">Go to Bonus</a>
+    </div>
+  </div>
+</div>
+
+<script src="scripts/supabase.js"></script>
+<script src="scripts/auth.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    const balanceUSElement = document.getElementById('balanceUS');
+    const balanceUSLargeElement = document.getElementById('balanceUSLarge');
+    const balanceBRLElement = document.getElementById('balanceBRL');
+    const progressBarElement = document.getElementById('progressBar');
+    const progressPercentageElement = document.getElementById('progressPercentage');
+    const withdrawButton = document.getElementById('withdrawButton');
+    
+    // Alert elements
+    const contactEmailAlert = document.getElementById('contactEmailAlert');
+    const alertEligibleBalance = document.getElementById('alertEligibleBalance');
+    
+    // Forçar o modal a ficar oculto
+    if (contactEmailAlert) {
+      contactEmailAlert.style.display = 'none';
+      contactEmailAlert.classList.add('hidden');
+    }
+    
+    const MINIMUM_WITHDRAWAL = 1000;
+    const CONVERSION_RATE = 5.0; // BRL to USD
+    
+    try {
+      // Check authentication
+      const userEmail = await checkAuth();
+      if (!userEmail) {
+        window.location.href = 'index.html';
+        return;
       }
-    });
-  </script>
+      
+      // Load user balance
+      const balance = await getUserBalance(userEmail);
+      const currentBalanceUSD = parseFloat(balance.balanceUSD);
+      const currentBalanceBRL = currentBalanceUSD * CONVERSION_RATE;
+      
+      balanceUSElement.textContent = `$${balance.balanceUSD}`;
+      balanceUSLargeElement.textContent = `$${balance.balanceUSD}`;
+      balanceBRLElement.textContent = `R$ ${currentBalanceBRL.toFixed(2)}`;
+      
+      // Update progress bar
+      const stats = await getEvaluationStats(userEmail);
+      progressBarElement.style.width = `${stats.completionPercentage}%`;
+      progressPercentageElement.textContent = `${stats.completionPercentage}%`;
+      
+      // Set up withdraw button - ONLY show modal when button is clicked
+      withdrawButton.addEventListener('click', function() {
+        // Mostrar o modal apenas quando o botão for clicado
+        if (contactEmailAlert) {
+          alertEligibleBalance.textContent = `$${currentBalanceUSD.toFixed(2)}`;
+          contactEmailAlert.style.display = 'flex';
+          contactEmailAlert.classList.remove('hidden');
+        }
+      });
+      
+      // Configurar o botão de fechar modal
+      if (document.getElementById('closeContactAlert')) {
+        document.getElementById('closeContactAlert').addEventListener('click', function() {
+          contactEmailAlert.style.display = 'none';
+          contactEmailAlert.classList.add('hidden');
+        });
+      }
+      
+    } catch (err) {
+      console.error('Error loading data:', err);
+    }
+  });
+</script>
 </body>
 </html>

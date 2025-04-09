@@ -3,110 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TM APP - Profile</title>
+  <title>TEMU APP - Profile</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div class="min-h-screen bg-background pb-16">
+  <div class="min-h-screen bg-white">
     <header class="p-4 flex justify-between items-center border-b">
       <div class="temu-logo-container">
         <h1 class="temu-logo">
-          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+          <span class="text-primary">TEMU</span> <span class="text-primary">APP</span>
         </h1>
       </div>
       <div class="text-right">
-        <div class="balance-text" id="balanceUS">$0.00</div>
+        <div class="text-primary text-xl font-bold" id="balanceUS">$0.00</div>
       </div>
     </header>
     
     <main class="p-4 flex flex-col items-center">
-      <div class="my-12 flex flex-col items-center">
-        <div class="bg-accent rounded-full p-8 mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-primary"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        
-        
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TM APP - Profile</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-  <div class="min-h-screen bg-background pb-16">
-    <header class="p-4 flex justify-between items-center border-b">
-      <div class="temu-logo-container">
-        <h1 class="temu-logo">
-          <span class="text-secondary">TM</span> <span class="text-secondary">APP</span>
-        </h1>
-      </div>
-      <div class="text-right">
-        <div class="balance-text" id="balanceUS">$0.00</div>
-      </div>
-    </header>
-    
-    <main class="p-4 flex flex-col items-center">
-      <div class="my-12 flex flex-col items-center">
-        <div class="bg-accent rounded-full p-8 mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-primary"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        
-        <h2 class="text-2xl font-bold text-primary mb-2" id="userEmail">user@example.com</h2>
-        <p class="text-gray-500">Member since <span id="memberSince">January 2023</span></p>
+      <!-- Profile Avatar -->
+      <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
       
-      <div class="w-full space-y-6">
-        <div class="bg-white p-4 rounded-lg shadow">
-          <h3 class="text-xl font-medium text-primary mb-4">Account Information</h3>
-          
-          <div class="space-y-4">
-            <div>
-              <label class="text-sm text-gray-500">Email</label>
-              <p class="text-primary" id="profileEmail">user@example.com</p>
-            </div>
-            
-            <div>
-              <label class="text-sm text-gray-500">Total Evaluations</label>
-              <p class="text-primary" id="totalEvaluations">0</p>
-            </div>
-            
-            <div>
-              <label class="text-sm text-gray-500">Total Earned</label>
-              <p class="text-primary" id="totalEarned">$0.00</p>
-            </div>
-          </div>
+      <!-- User Email -->
+      <h2 class="text-primary text-xl font-bold mb-1" id="userEmail">user@example.com</h2>
+      <p class="text-gray-500 mb-8" id="memberSince">Member since January 1, 2023</p>
+      
+      <!-- Account Information Card -->
+      <div class="w-full max-w-md bg-white rounded-lg shadow-sm border p-5 mb-4">
+        <h3 class="text-primary text-lg font-bold mb-4">Account Information</h3>
+        
+        <div class="mb-3">
+          <p class="text-gray-500">Email</p>
+          <p class="text-navy font-medium" id="infoEmail">user@example.com</p>
         </div>
         
-        <div class="bg-white p-4 rounded-lg shadow">
-          <h3 class="text-xl font-medium text-primary mb-4">Settings</h3>
-          
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-primary">Notifications</span>
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-              </label>
-            </div>
-            
-            <div class="flex items-center justify-between">
-              <span class="text-primary">Dark Mode</span>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label>
-            </div>
-          </div>
+        <div class="mb-3">
+          <p class="text-gray-500">Total Evaluations</p>
+          <p class="text-navy font-medium" id="totalEvaluations">0</p>
         </div>
         
-        <button id="logoutButton" class="red-button w-full">
-          Log Out
-        </button>
+        <div>
+          <p class="text-gray-500">Total Earned</p>
+          <p class="text-navy font-medium" id="totalEarned">$0.00</p>
+        </div>
       </div>
+      
+      <!-- Settings Card -->
+      <div class="w-full max-w-md bg-white rounded-lg shadow-sm border p-5 mb-4">
+        <h3 class="text-primary text-lg font-bold mb-4">Settings</h3>
+        
+        <div class="flex justify-between items-center mb-3">
+          <p class="text-navy">Notifications</p>
+          <div class="toggle-switch">
+            <input type="checkbox" id="notificationToggle" checked>
+            <label for="notificationToggle"></label>
+          </div>
+        </div>
+        
+        
+      </div>
+      
+      <!-- Logout Button -->
+      <button id="logoutButton" class="w-full max-w-md bg-orange-600 text-white py-4 rounded-lg font-medium text-center text-lg">
+        Log Out
+      </button>
     </main>
     
     <nav class="bottom-nav">
@@ -137,14 +99,6 @@
   <script src="scripts/auth.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async function() {
-      const balanceUSElement = document.getElementById('balanceUS');
-      const userEmailElement = document.getElementById('userEmail');
-      const profileEmailElement = document.getElementById('profileEmail');
-      const memberSinceElement = document.getElementById('memberSince');
-      const totalEvaluationsElement = document.getElementById('totalEvaluations');
-      const totalEarnedElement = document.getElementById('totalEarned');
-      const logoutButton = document.getElementById('logoutButton');
-      
       try {
         // Check authentication
         const userEmail = await checkAuth();
@@ -153,41 +107,67 @@
           return;
         }
         
-        // Display user email
-        userEmailElement.textContent = userEmail;
-        profileEmailElement.textContent = userEmail;
-        
-        // Load user balance
-        const balance = await getUserBalance(userEmail);
-        balanceUSElement.textContent = `$${balance.balanceUSD}`;
-        
-        // Get user data from Supabase
-        const { data: userData, error } = await supabase
+        // Load user data
+        const { data: userData, error: userError } = await supabase
           .from('users')
-          .select('created_at, completed_surveys, balance_usd')
+          .select('*')
           .eq('email', userEmail)
           .single();
         
-        if (userData) {
-          // Format date
-          const createdAt = new Date(userData.created_at);
-          const options = { year: 'numeric', month: 'long', day: 'numeric' };
-          memberSinceElement.textContent = createdAt.toLocaleDateString('en-US', options);
-          
-          // Display total evaluations
-          totalEvaluationsElement.textContent = userData.completed_surveys || '0';
-          
-          // Display total earned
-          totalEarnedElement.textContent = `$${userData.balance_usd.toFixed(2)}`;
+        if (userError) {
+          console.error('Error loading user data:', userError);
+          return;
+        }
+        
+        // Format registration date
+        const regDate = new Date(userData.created_at);
+        const formattedDate = regDate.toLocaleDateString('en-US', { 
+          month: 'long', 
+          day: 'numeric', 
+          year: 'numeric' 
+        });
+        
+        // Update balance display
+        const balanceUS = document.getElementById('balanceUS');
+        const totalEarned = document.getElementById('totalEarned');
+        
+        // Make sure to use the correct balance value from userData
+        const balanceValue = userData.balance_usd.toFixed(2);
+        
+        balanceUS.textContent = `$${balanceValue}`;
+        totalEarned.textContent = `$${balanceValue}`;
+        
+        // Update user information
+        document.getElementById('userEmail').textContent = userEmail;
+        document.getElementById('infoEmail').textContent = userEmail;
+        document.getElementById('memberSince').textContent = `Member since ${formattedDate}`;
+        
+        // Get evaluation count
+        const { count, error: countError } = await supabase
+          .from('product_evaluations')
+          .select('*', { count: 'exact' })
+          .eq('user_email', userEmail);
+        
+        if (!countError) {
+          document.getElementById('totalEvaluations').textContent = count || 0;
         }
         
         // Set up logout button
-        logoutButton.addEventListener('click', function() {
-          logout();
-          window.location.href = 'index.html';
+        document.getElementById('logoutButton').addEventListener('click', async function() {
+          try {
+            await supabase.auth.signOut();
+            localStorage.removeItem('userEmail');
+            window.location.href = 'index.html';
+          } catch (error) {
+            console.error('Error signing out:', error);
+          }
         });
+        
+        localStorage.setItem('authToken', result.token);
+        localStorage.setItem('userEmail', email);
+        
       } catch (err) {
-        console.error('Error loading data:', err);
+        console.error('Error loading profile data:', err);
       }
     });
   </script>
