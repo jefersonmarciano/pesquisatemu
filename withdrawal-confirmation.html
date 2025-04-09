@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEMU APP - Withdrawal Confirmation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-background pb-16">
+    <header class="p-4 flex justify-between items-center border-b">
+      <div class="temu-logo-container">
+        <h1 class="temu-logo">
+          <span class="text-secondary">TEMU</span> <span class="text-secondary">APP</span>
+        </h1>
+      </div>
+      <div class="text-right">
+        <div class="balance-text" id="balanceUS">$0.00</div>
+      </div>
+    </header>
+    
+    <main class="p-4 flex flex-col items-center text-center">
+      <div class="my-8 w-full max-w-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-24 w-24 text-green-500 mx-auto mb-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        
+        <h1 class="text-3xl font-bold text-primary mb-4">
+          Withdrawal Requested
+        </h1>
+        
+        <p class="text-lg text-gray-600 mb-6">
+          Your withdrawal request has been submitted successfully. Please allow 1-3 business days for processing.
+        </p>
+        
+        <div class="bg-gray-100 p-4 rounded-md mb-6 text-left">
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-500">Amount:</span>
+            <span class="font-bold text-primary" id="confirmAmount">$0.00</span>
+          </div>
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-500">Method:</span>
+            <span class="font-bold text-primary" id="confirmMethod">Swift</span>
+          </div>
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-500">Reference ID:</span>
+            <span class="font-bold text-primary" id="confirmReference">TRX123456789</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Status:</span>
+            <span class="font-bold text-green-500">Pending</span>
+          </div>
+        </div>
+        
+        <p class="text-sm text-gray-500 mb-6">
+          You will receive an email notification once your withdrawal has been processed.
+        </p>
+        
+        <div class="flex space-x-4">
+          <a href="wallet.html" class="blue-button w-1/2">
+            Back to Wallet
+          </a>
+          
+          <a href="home.html" class="blue-button w-1/2">
+            Go to Home
+          </a>
+        </div>
+      </div>
+    </main>
+    
+    <nav class="bottom-nav">
+      <a href="home.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
+        <span>Lessons</span>
+      </a>
+      <a href="bonus.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        <span>Bonus</span>
+      </a>
+      <a href="wallet.html" class="bottom-nav-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Profile</span>
+      </a>
+      <a href="extras.html" class="bottom-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
+        <span>Extras</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="scripts/supabase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      const balanceUSElement = document.getElementById('balanceUS');
+      const confirmAmountElement = document.getElementById('confirmAmount');
+      const confirmMethodElement = document.getElementById('confirmMethod');
+      const confirmReferenceElement = document.getElementById('confirmReference');
+      
+      try {
+        // Check authentication
+        const userEmail = await checkAuth();
+        if (!userEmail) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        // Load user balance
+        const balance = await getUserBalance(userEmail);
+        balanceUSElement.textContent = `$${balance.balanceUSD}`;
+        
+        // Get withdrawal details from localStorage
+        const amount = localStorage.getItem('withdrawalAmount') || '0.00';
+        const method = localStorage.getItem('withdrawalMethod') || 'Swift';
+        const reference = localStorage.getItem('withdrawalReference') || 'TRX123456789';
+        
+        // Update confirmation details
+        confirmAmountElement.textContent = `$${amount}`;
+        confirmMethodElement.textContent = method;
+        confirmReferenceElement.textContent = reference;
+        
+      } catch (err) {
+        console.error('Error loading data:', err);
+      }
+    });
+  </script>
+</body>
+</html>

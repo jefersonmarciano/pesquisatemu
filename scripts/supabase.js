@@ -453,3 +453,105 @@ async function registerProductEvaluation(email, productId, answers) {
   // Update user balance
   return await updateUserBalance(email, product.bonus);
 }
+
+// Function to register product evaluation
+async function registerProductEvaluation(email, productId, answers) {
+  const now = new Date().toISOString();
+  
+  // Find the evaluated product
+  const product = availableProducts.find(p => p.id === productId);
+  if (!product) {
+    console.error('Product not found:', productId);
+    return null;
+  }
+  
+  // Calculate BRL value (using a fixed conversion rate of 5.0 BRL to 1 USD)
+  const conversionRate = 5.0;
+  const bonusBRL = product.bonus * conversionRate;
+  
+  // Register the evaluation
+  const { data, error } = await supabase
+    .from('product_evaluations')
+    .insert([
+      {
+        user_email: email,
+        product_id: productId,
+        product_name: product.name,
+        answers: JSON.stringify(answers),
+        evaluated_at: now,
+        bonus_usd: product.bonus,
+        bonus_brl: bonusBRL
+      }
+    ])
+    .select();
+  
+  if (error) {
+    console.error('Error registering evaluation:', error);
+    return null;
+  }
+  
+  // Update user balance
+  return await updateUserBalance(email, product.bonus);
+}
+
+// Function to process Swift payment
+async function processSwiftPayment(email, amount, swiftDetails) {
+  // In a real application, this would connect to a payment processor
+  // For now, we'll just record the transaction in the database
+  
+  const now = new Date().toISOString();
+  const referenceId = 'SWIFT' + Math.floor(Math.random() * 1000000000);
+  
+  const { data, error } = await supabase
+    .from('withdrawals')
+    .insert([
+      {
+        user_email: email,
+        amount_usd: amount,
+        payment_method: 'swift',
+        payment_details: JSON.stringify(swiftDetails),
+        status: 'pending',
+        reference_id: referenceId,
+        created_at: now
+      }
+    ])
+    .select();
+  
+  if (error) {
+    console.error('Error processing Swift payment:', error);
+    return null;
+  }
+  
+  // Deduct from user balance
+  const { data: userData, error: userError } = await supabase
+    .from('users')
+    .select('balance_usd')
+    .eq('email', email)
+    .single();
+  
+  if (userError) {
+    console.error('Error getting user balance:', userError);
+    return null;
+  }
+  
+  const newBalance = userData.balance_usd - amount;
+  
+  const { data: updateData, error: updateError } = await supabase
+    .from('users')
+    .update({
+      balance_usd: newBalance
+    })
+    .eq('email', email)
+    .select();
+  
+  if (updateError) {
+    console.error('Error updating user balance:', updateError);
+    return null;
+  }
+  
+  return {
+    success: true,
+    referenceId: referenceId,
+    newBalance: newBalance.toFixed(2)
+  };
+}
