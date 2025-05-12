@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEMU APP - Profile</title>
+  <title>TEMU APP - Perfil</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -28,11 +28,11 @@
       
       <!-- User Email -->
       <h2 class="text-primary text-xl font-bold mb-1" id="userEmail">user@example.com</h2>
-      <p class="text-gray-500 mb-8" id="memberSince">Member since January 1, 2023</p>
+      <p class="text-gray-500 mb-8" id="memberSince">Miembro desde el 1 de enero de 2023</p>
       
       <!-- Account Information Card -->
       <div class="w-full max-w-md bg-white rounded-lg shadow-sm border p-5 mb-4">
-        <h3 class="text-primary text-lg font-bold mb-4">Account Information</h3>
+        <h3 class="text-primary text-lg font-bold mb-4">Información de la Cuenta</h3>
         
         <div class="mb-3">
           <p class="text-gray-500">Email</p>
@@ -40,22 +40,22 @@
         </div>
         
         <div class="mb-3">
-          <p class="text-gray-500">Total Evaluations</p>
+          <p class="text-gray-500">Total de Evaluaciones</p>
           <p class="text-navy font-medium" id="totalEvaluations">0</p>
         </div>
         
         <div>
-          <p class="text-gray-500">Total Earned</p>
+          <p class="text-gray-500">Total Ganado</p>
           <p class="text-navy font-medium" id="totalEarned">$0.00</p>
         </div>
       </div>
       
       <!-- Settings Card -->
       <div class="w-full max-w-md bg-white rounded-lg shadow-sm border p-5 mb-4">
-        <h3 class="text-primary text-lg font-bold mb-4">Settings</h3>
+        <h3 class="text-primary text-lg font-bold mb-4">Configuración</h3>
         
         <div class="flex justify-between items-center mb-3">
-          <p class="text-navy">Notifications</p>
+          <p class="text-navy">Notificaciones</p>
           <div class="toggle-switch">
             <input type="checkbox" id="notificationToggle" checked>
             <label for="notificationToggle"></label>
@@ -67,26 +67,26 @@
       
       <!-- Logout Button -->
       <button id="logoutButton" class="w-full max-w-md bg-orange-600 text-white py-4 rounded-lg font-medium text-center text-lg">
-        Log Out
+        Cerrar Sesión
       </button>
     </main>
     
     <nav class="bottom-nav">
       <a href="home.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
-        <span>Lessons</span>
+        <span>Lecciones</span>
       </a>
       <a href="bonus.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-        <span>Bonus</span>
+        <span>Bonificación</span>
       </a>
       <a href="wallet.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-        <span>Wallet</span>
+        <span>Billetera</span>
       </a>
       <a href="profile.html" class="bottom-nav-item active">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span>Profile</span>
+        <span>Perfil</span>
       </a>
       <a href="extras.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
@@ -115,13 +115,13 @@
           .single();
         
         if (userError) {
-          console.error('Error loading user data:', userError);
+          console.error('Error cargando datos del usuario:', userError);
           return;
         }
         
         // Format registration date
         const regDate = new Date(userData.created_at);
-        const formattedDate = regDate.toLocaleDateString('en-US', { 
+        const formattedDate = regDate.toLocaleDateString('es-ES', { 
           month: 'long', 
           day: 'numeric', 
           year: 'numeric' 
@@ -140,7 +140,7 @@
         // Update user information
         document.getElementById('userEmail').textContent = userEmail;
         document.getElementById('infoEmail').textContent = userEmail;
-        document.getElementById('memberSince').textContent = `Member since ${formattedDate}`;
+        document.getElementById('memberSince').textContent = `Miembro desde ${formattedDate}`;
         
         // Get evaluation count
         const { count, error: countError } = await supabase
@@ -159,7 +159,7 @@
             localStorage.removeItem('userEmail');
             window.location.href = 'index.html';
           } catch (error) {
-            console.error('Error signing out:', error);
+            console.error('Error al cerrar sesión:', error);
           }
         });
         
@@ -167,7 +167,7 @@
         localStorage.setItem('userEmail', email);
         
       } catch (err) {
-        console.error('Error loading profile data:', err);
+        console.error('Error cargando datos del perfil:', err);
       }
     });
   </script>

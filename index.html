@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TM APP - Login</title>
+  <title>TM APP - Iniciar Sesión</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -20,14 +20,14 @@
     <main class="flex-1 p-6 flex flex-col max-w-md mx-auto w-full">
       <div class="mt-12 mb-8">
         <h1 class="text-3xl font-bold text-primary mb-2">
-          To continue, access your account:
+          Para continuar, accede a tu cuenta:
         </h1>
       </div>
       
       <form id="loginForm" class="space-y-8">
         <div class="space-y-2">
           <label for="email" class="text-xl font-medium text-primary">
-            Enter your email
+            Ingresa tu correo electrónico
           </label>
           <input
             id="email"
@@ -40,7 +40,7 @@
         
         <div class="text-center">
           <a href="#" class="text-primary underline">
-            Terms of use
+            Términos de uso
           </a>
         </div>
         
@@ -49,7 +49,7 @@
           class="red-button w-full text-xl"
           id="loginButton"
         >
-          Access app
+          Acceder a la app
         </button>
       </form>
     </main>
@@ -77,11 +77,11 @@
         
         const email = emailInput.value.trim();
         if (!email) {
-          showError('Please enter a valid email');
+          showError('Por favor, introduce un correo electrónico válido');
           return;
         }
         
-        loginButton.textContent = 'Processing...';
+        loginButton.textContent = 'Procesando...';
         loginButton.disabled = true;
         errorMessage.classList.add('hidden');
         
@@ -95,13 +95,13 @@
             
             window.location.href = 'home.html';
           } else {
-            showError('Error logging in. Please try again.');
+            showError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
           }
         } catch (err) {
           console.error('Login error:', err);
-          showError('Error logging in. Please try again.');
+          showError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
         } finally {
-          loginButton.textContent = 'Access app';
+          loginButton.textContent = 'Acceder a la app';
           loginButton.disabled = false;
         }
       });

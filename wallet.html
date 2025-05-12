@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEMU APP - Wallet</title>
+<title>TEMU APP - Billetera</title>
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -23,7 +23,7 @@
   <main class="p-4">
     <div class="mb-6">
       <div class="flex justify-between items-center mb-2">
-        <h2 class="text-xl font-medium text-navy">Daily Progress</h2>
+        <h2 class="text-xl font-medium text-navy">Progreso Diario</h2>
         <span class="text-navy font-medium" id="progressPercentage">0.00%</span>
       </div>
       <div class="w-full bg-cream border border-gray-300 h-4 rounded-full">
@@ -32,17 +32,17 @@
     </div>
     
     <div class="text-center my-8">
-      <h2 class="text-2xl font-medium text-navy mb-2">Your Balance</h2>
+      <h2 class="text-2xl font-medium text-navy mb-2">Tu Saldo</h2>
       <div class="text-primary text-6xl font-bold" id="balanceUSLarge">$0.00</div>
       <div class="text-navy text-3xl" id="balanceBRL">R$ 0.00</div>
     </div>
     
     <div class="bg-primary text-white p-4 text-center mb-8">
-      <p>Your balance limit: $1,000.00</p>
+      <p>Límite de saldo: $1,000.00</p>
     </div>
     
     <div id="withdrawalOptions" class="mb-8">
-      <h3 class="text-2xl font-medium text-navy mb-4 text-center">Select your payment method</h3>
+      <h3 class="text-2xl font-medium text-navy mb-4 text-center">Selecciona tu método de pago</h3>
       
       <div class="grid grid-cols-3 gap-2 mb-6">
         <div class="bg-navy text-white p-4 rounded-md text-center active-payment-option">
@@ -52,7 +52,7 @@
         
         <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="text-gray-500">Phone</span>
+          <span class="text-gray-500">Teléfono</span>
         </div>
         
         <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
@@ -62,16 +62,16 @@
       </div>
       
       <div class="mb-6">
-        <label class="text-navy mb-2 block">Enter your payment information</label>
+        <label class="text-navy mb-2 block">Ingresa tu información de pago</label>
         <input
           type="text"
           class="input border-b-2 border-navy rounded-none px-0 text-lg w-full"
-          placeholder="Enter your CPF number..."
+          placeholder="Ingresa tu número de CPF..."
         />
       </div>
       
       <button id="withdrawButton" class="withdrawal-button w-full text-xl">
-        Withdraw Funds
+        Retirar Fondos
       </button>
     </div>
   </main>
@@ -79,19 +79,19 @@
   <nav class="bottom-nav">
     <a href="home.html" class="bottom-nav-item">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
-      <span>Lessons</span>
+      <span>Lecciones</span>
     </a>
     <a href="bonus.html" class="bottom-nav-item">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-      <span>Bonus</span>
+      <span>Bonificación</span>
     </a>
     <a href="wallet.html" class="bottom-nav-item active">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-      <span>Wallet</span>
+      <span>Billetera</span>
     </a>
     <a href="profile.html" class="bottom-nav-item">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <span>Profile</span>
+      <span>Perfil</span>
     </a>
     <a href="extras.html" class="bottom-nav-item">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
@@ -106,21 +106,21 @@
     <div class="text-center p-6">
       <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-green-500 mx-auto mb-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       
-      <h2 class="text-2xl font-bold text-navy mb-2">Withdrawal Available</h2>
-      <p class="text-gray-600 mb-6">You have reached the minimum withdrawal amount. Please contact us at <strong>support@temuapp.com</strong> to process your withdrawal.</p>
+      <h2 class="text-2xl font-bold text-navy mb-2">Retiro Disponible</h2>
+      <p class="text-gray-600 mb-6">Has alcanzado el monto mínimo de retiro. Por favor, contáctanos en <strong>support@temuapp.com</strong> para procesar tu retiro.</p>
       
       <div class="bg-gray-100 p-4 rounded-md mb-6">
         <div class="flex justify-between mb-2">
-          <span class="text-gray-500">Your Balance:</span>
+          <span class="text-gray-500">Tu Saldo:</span>
           <span class="font-bold text-navy" id="alertEligibleBalance">$0.00</span>
         </div>
         <div class="flex justify-between">
-          <span class="text-gray-500">Minimum Required:</span>
+          <span class="text-gray-500">Mínimo Requerido:</span>
           <span class="font-bold text-navy">$1,000.00</span>
         </div>
       </div>
       
-      <a href="bonus.html" id="closeContactAlert" class="blue-button w-full">Go to Bonus</a>
+      <a href="bonus.html" id="closeContactAlert" class="blue-button w-full">Ir a Bonificación</a>
     </div>
   </div>
 </div>
@@ -140,7 +140,7 @@
     const contactEmailAlert = document.getElementById('contactEmailAlert');
     const alertEligibleBalance = document.getElementById('alertEligibleBalance');
     
-    // Forçar o modal a ficar oculto
+    // Forzar el modal a permanecer oculto
     if (contactEmailAlert) {
       contactEmailAlert.style.display = 'none';
       contactEmailAlert.classList.add('hidden');
@@ -173,7 +173,7 @@
       
       // Set up withdraw button - ONLY show modal when button is clicked
       withdrawButton.addEventListener('click', function() {
-        // Mostrar o modal apenas quando o botão for clicado
+        // Mostrar el modal solo cuando se hace clic en el botón
         if (contactEmailAlert) {
           alertEligibleBalance.textContent = `$${currentBalanceUSD.toFixed(2)}`;
           contactEmailAlert.style.display = 'flex';
@@ -181,7 +181,7 @@
         }
       });
       
-      // Configurar o botão de fechar modal
+      // Configurar el botón para cerrar el modal
       if (document.getElementById('closeContactAlert')) {
         document.getElementById('closeContactAlert').addEventListener('click', function() {
           contactEmailAlert.style.display = 'none';
@@ -190,7 +190,7 @@
       }
       
     } catch (err) {
-      console.error('Error loading data:', err);
+      console.error('Error cargando datos:', err);
     }
   });
 </script>

@@ -1,9 +1,9 @@
 &lt;!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TM APP - Bonus Limit</title>
+  <title>TM APP - Límite de Bonificación</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -25,15 +25,15 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-24 w-24 text-secondary mx-auto mb-4"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-.86-.34-1.72-.34-.86 0-1.72.34-1.72.34L14 16.19"/></svg>
         
         <h1 class="text-4xl font-bold text-primary mb-4">
-          Congratulations!
+          ¡Felicidades!
         </h1>
         
         <p class="text-2xl font-bold text-primary mb-6">
-          You've reached the daily evaluation limit!
+          ¡Has alcanzado el límite diario de evaluaciones!
         </p>
         
         <p class="text-gray-500 mb-12">
-          Come back tomorrow to continue evaluating products and increasing your balance.
+          Vuelve mañana para continuar evaluando productos y aumentar tu saldo.
         </p>
       </div>
     </main>
@@ -41,19 +41,19 @@
     <nav class="bottom-nav">
       <a href="home.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 5 3s5-1 5-3v-5"/></svg>
-        <span>Lessons</span>
+        <span>Lecciones</span>
       </a>
       <a href="bonus.html" class="bottom-nav-item active">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-        <span>Bonus</span>
+        <span>Bonificación</span>
       </a>
       <a href="wallet.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-        <span>Wallet</span>
+        <span>Billetera</span>
       </a>
       <a href="profile.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span>Profile</span>
+        <span>Perfil</span>
       </a>
       <a href="extras.html" class="bottom-nav-item">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M20 12V8H6a2 2 0 1 1 0-4h14v4"/><path d="M20 12v4H6a2 2 0 1 0 0 4h14v-4"/><path d="M20 12h2"/></svg>
@@ -80,7 +80,7 @@
         const balance = await getUserBalance(userEmail);
         balanceUSElement.textContent = `$${balance.balanceUSD}`;
       } catch (err) {
-        console.error('Error loading data:', err);
+        console.error('Error cargando datos:', err);
       }
     });
   </script>
