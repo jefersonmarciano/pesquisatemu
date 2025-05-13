@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEMU APP - Billetera</title>
+<title>Billetera</title>
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -11,9 +11,7 @@
 <div class="min-h-screen bg-cream">
   <header class="p-4 flex justify-between items-center bg-cream border-b border-gray-300">
     <div class="temu-logo-container">
-      <h1 class="temu-logo">
-        <span class="text-primary">TEMU</span> <span class="text-primary">APP</span>
-      </h1>
+      <img src="assets/temu-logo-1.png" alt="TEMU Logo" class="h-6">
     </div>
     <div class="text-right">
       <div class="text-primary text-xl font-bold" id="balanceUS">$0.00</div>
@@ -21,60 +19,80 @@
   </header>
   
   <main class="p-4">
-    <div class="mb-6">
-      <div class="flex justify-between items-center mb-2">
-        <h2 class="text-xl font-medium text-navy">Progreso Diario</h2>
-        <span class="text-navy font-medium" id="progressPercentage">0.00%</span>
-      </div>
-      <div class="w-full bg-cream border border-gray-300 h-4 rounded-full">
-        <div id="progressBar" class="bg-primary h-4 rounded-full" style="width: 0%"></div>
+    <div class="flex items-center mb-4">
+      <span class="text-primary text-2xl mr-2">$</span>
+      <h1 class="text-2xl font-medium text-navy">Retiro</h1>
+      <div class="ml-auto bg-gray-200 px-2 py-1 rounded-md">
+        <span class="text-primary text-lg font-bold" id="balanceUSHeader">$ 0.00</span>
       </div>
     </div>
     
-    <div class="text-center my-8">
-      <h2 class="text-2xl font-medium text-navy mb-2">Tu Saldo</h2>
-      <div class="text-primary text-6xl font-bold" id="balanceUSLarge">$0.00</div>
-      <div class="text-navy text-3xl" id="balanceBRL">R$ 0.00</div>
+    <div class="bg-amber-50 p-4 rounded-md border border-amber-100 mb-6">
+      <p class="text-amber-800 mb-2">Gana más para desbloquear retiros</p>
+      <p class="text-amber-800" id="withdrawalRequirementText">
+        Necesitas $1000.00 más para alcanzar el monto mínimo de retiro de $1000.00. Tu saldo: $0.00
+      </p>
     </div>
     
-    <div class="bg-primary text-white p-4 text-center mb-8">
-      <p>Límite de saldo: $1,000.00</p>
-    </div>
+    <h2 class="text-xl font-medium text-navy mb-4">Retirar Fondos</h2>
     
-    <div id="withdrawalOptions" class="mb-8">
-      <h3 class="text-2xl font-medium text-navy mb-4 text-center">Selecciona tu método de pago</h3>
-      
-      <div class="grid grid-cols-3 gap-2 mb-6">
-        <div class="bg-navy text-white p-4 rounded-md text-center active-payment-option">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>CPF</span>
-        </div>
-        
-        <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="text-gray-500">Teléfono</span>
-        </div>
-        
-        <div class="bg-cream border border-gray-300 p-4 rounded-md text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 mx-auto mb-2 text-gray-500"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          <span class="text-gray-500">Email</span>
+    <div class="space-y-4 mb-8">
+      <!-- PayPal Option -->
+      <div class="bg-white rounded-md p-4 shadow">
+        <div class="flex items-center">
+          <img src="assets/TM_Money.jpg" alt="PayPal" class="h-8 w-8 mr-2" style="object-fit: cover;">
+          <div class="flex-1">
+            <h3 class="font-medium">PayPal</h3>
+            <p class="text-gray-500 text-sm">Retira directamente a tu cuenta PayPal</p>
+          </div>
+          <div class="text-gray-500 text-sm">Mín: $5.00</div>
         </div>
       </div>
       
-      <div class="mb-6">
-        <label class="text-navy mb-2 block">Ingresa tu información de pago</label>
-        <input
-          type="text"
-          class="input border-b-2 border-navy rounded-none px-0 text-lg w-full"
-          placeholder="Ingresa tu número de CPF..."
-        />
+      <!-- Amazon Gift Card Option -->
+      <div class="bg-white rounded-md p-4 shadow">
+        <div class="flex items-center">
+          <img src="assets/estrategies.png" alt="Amazon" class="h-8 w-8 mr-2" style="object-fit: cover;">
+          <div class="flex-1">
+            <h3 class="font-medium">Tarjeta Regalo Amazon</h3>
+            <p class="text-gray-500 text-sm">Canjea por tarjetas regalo de Amazon para comprar online</p>
+          </div>
+          <div class="text-gray-500 text-sm">Mín: $10.00</div>
+        </div>
       </div>
       
-      <button id="withdrawButton" class="withdrawal-button w-full text-xl">
-        Retirar Fondos
-      </button>
+      <!-- App Profit Gift Card Option -->
+      <div class="bg-white rounded-md p-4 shadow">
+        <div class="flex items-center">
+          <div class="h-8 w-8 bg-primary rounded-full flex items-center justify-center mr-2 text-white">
+            <span class="text-white font-bold">AP</span>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-medium">Tarjeta Regalo</h3>
+            <p class="text-gray-500 text-sm">Usa tus ganancias para comprar con valor extra</p>
+          </div>
+          <div class="text-gray-500 text-sm">Mín: $2.00</div>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="text-xl font-medium text-navy mb-4 flex justify-between">
+      <span>Historial de Retiros</span>
+      <a href="#" class="text-primary text-sm" id="viewAllHistory">Ver todo</a>
+    </h2>
+    
+    <div class="bg-white rounded-md p-4 shadow text-center">
+      <p class="text-gray-500">No hay historial de retiros aún</p>
     </div>
   </main>
+  
+  <div class="text-center p-4 mt-12">
+    <div class="mx-auto mb-2">
+      <img src="assets/temu-logo-1.png" alt="TEMU Logo" class="h-6 mx-auto">
+    </div>
+    <p class="text-navy">Recompensas</p>
+    <p class="text-gray-500 text-sm">© 2025. Todos los derechos reservados.</p>
+  </div>
   
   <nav class="bottom-nav">
     <a href="home.html" class="bottom-nav-item">
@@ -130,11 +148,8 @@
 <script>
   document.addEventListener('DOMContentLoaded', async function() {
     const balanceUSElement = document.getElementById('balanceUS');
-    const balanceUSLargeElement = document.getElementById('balanceUSLarge');
-    const balanceBRLElement = document.getElementById('balanceBRL');
-    const progressBarElement = document.getElementById('progressBar');
-    const progressPercentageElement = document.getElementById('progressPercentage');
-    const withdrawButton = document.getElementById('withdrawButton');
+    const balanceUSHeaderElement = document.getElementById('balanceUSHeader');
+    const withdrawalRequirementTextElement = document.getElementById('withdrawalRequirementText');
     
     // Alert elements
     const contactEmailAlert = document.getElementById('contactEmailAlert');
@@ -160,25 +175,40 @@
       // Load user balance
       const balance = await getUserBalance(userEmail);
       const currentBalanceUSD = parseFloat(balance.balanceUSD);
-      const currentBalanceBRL = currentBalanceUSD * CONVERSION_RATE;
       
       balanceUSElement.textContent = `$${balance.balanceUSD}`;
-      balanceUSLargeElement.textContent = `$${balance.balanceUSD}`;
-      balanceBRLElement.textContent = `R$ ${currentBalanceBRL.toFixed(2)}`;
+      balanceUSHeaderElement.textContent = `$${balance.balanceUSD}`;
       
-      // Update progress bar
-      const stats = await getEvaluationStats(userEmail);
-      progressBarElement.style.width = `${stats.completionPercentage}%`;
-      progressPercentageElement.textContent = `${stats.completionPercentage}%`;
+      // Update withdrawal requirement text
+      const remaining = MINIMUM_WITHDRAWAL - currentBalanceUSD;
+      if (remaining > 0) {
+        withdrawalRequirementTextElement.textContent = `Necesitas $${remaining.toFixed(2)} más para alcanzar el monto mínimo de retiro de $${MINIMUM_WITHDRAWAL.toFixed(2)}. Tu saldo: $${currentBalanceUSD.toFixed(2)}`;
+      } else {
+        withdrawalRequirementTextElement.textContent = `¡Felicidades! Has alcanzado el monto mínimo para retirar. Tu saldo: $${currentBalanceUSD.toFixed(2)}`;
+        withdrawalRequirementTextElement.classList.add('text-green-600');
+        withdrawalRequirementTextElement.classList.remove('text-amber-800');
+      }
       
-      // Set up withdraw button - ONLY show modal when button is clicked
-      withdrawButton.addEventListener('click', function() {
-        // Mostrar el modal solo cuando se hace clic en el botón
-        if (contactEmailAlert) {
-          alertEligibleBalance.textContent = `$${currentBalanceUSD.toFixed(2)}`;
-          contactEmailAlert.style.display = 'flex';
-          contactEmailAlert.classList.remove('hidden');
-        }
+      // Set up view all history button
+      document.getElementById('viewAllHistory').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('No hay historial de retiros disponible en este momento.');
+      });
+      
+      // Setup withdrawal options to show contact modal
+      const withdrawalOptions = document.querySelectorAll('.bg-white.rounded-md.p-4.shadow');
+      withdrawalOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          if (currentBalanceUSD >= MINIMUM_WITHDRAWAL) {
+            if (contactEmailAlert) {
+              alertEligibleBalance.textContent = `$${currentBalanceUSD.toFixed(2)}`;
+              contactEmailAlert.style.display = 'flex';
+              contactEmailAlert.classList.remove('hidden');
+            }
+          } else {
+            alert(`Necesitas $${remaining.toFixed(2)} más para poder retirar fondos.`);
+          }
+        });
       });
       
       // Configurar el botón para cerrar el modal
